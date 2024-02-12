@@ -26,9 +26,6 @@ jobs:
           cd springboot-pizza-manager
           mvn clean install
 
-      - name: Print workspace path
-        run: echo "Workspace path is ${{ github.workspace }}"
-
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
