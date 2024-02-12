@@ -11,7 +11,7 @@ function StoreOwner() {
   useEffect(() => {
     const fetchToppings = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/toppings");
+        const response = await axios.get("/api/toppings");
         setToppings(response.data);
       } catch (error) {
         console.error("There was an error fetching the toppings:", error);
@@ -26,10 +26,7 @@ function StoreOwner() {
   const addTopping = async (toppingName) => {
     try {
       const newTopping = { name: toppingName };
-      const response = await axios.post(
-        "http://localhost:8080/api/toppings",
-        newTopping
-      );
+      const response = await axios.post("/api/toppings", newTopping);
       setToppings([...toppings, response.data]);
       setError("");
     } catch (error) {
@@ -41,7 +38,7 @@ function StoreOwner() {
   // Function to remove a topping
   const removeTopping = async (toppingId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/toppings/${toppingId}`);
+      await axios.delete(`/api/toppings/${toppingId}`);
       setToppings(toppings.filter((topping) => topping.id !== toppingId));
       setError("");
     } catch (error) {
@@ -55,7 +52,7 @@ function StoreOwner() {
     try {
       const updatedTopping = { name: newName };
       const response = await axios.put(
-        `http://localhost:8080/api/toppings/${toppingId}`,
+        `/api/toppings/${toppingId}`,
         updatedTopping
       );
       setToppings(
