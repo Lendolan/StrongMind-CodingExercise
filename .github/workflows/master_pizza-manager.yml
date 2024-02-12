@@ -21,10 +21,10 @@ jobs:
         with:
           java-version: '17'
 
-      - name: Build with Maven
+      - name: Build with Maven Wrapper
         run: |
           cd springboot-pizza-manager
-          mvn clean install
+          mvnw clean install
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
