@@ -22,8 +22,8 @@ function PizzaChef() {
   const fetchData = async () => {
     try {
       const [pizzasRes, toppingsRes] = await Promise.all([
-        axios.get("http://localhost:8080/api/pizzas"),
-        axios.get("http://localhost:8080/api/toppings"),
+        axios.get("/api/pizzas"),
+        axios.get("/api/toppings"),
       ]);
       setPizzas(pizzasRes.data);
       setToppings(toppingsRes.data);
@@ -83,7 +83,7 @@ function PizzaChef() {
         toppingIds: toppingIds, // Send only the array of selected topping IDs
       };
 
-      await axios.post("http://localhost:8080/api/pizzas", payload);
+      await axios.post("/api/pizzas", payload);
 
       // Resetting the form and re-fetching pizzas to reflect the new addition
       setNewPizzaName("");
@@ -103,7 +103,7 @@ function PizzaChef() {
   // Deletes a pizza and refreshes the list
   const deletePizza = async (pizzaId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/pizzas/${pizzaId}`);
+      await axios.delete(`/api/pizzas/${pizzaId}`);
       fetchData();
     } catch (error) {
       console.error("Failed to delete pizza", error);
@@ -119,7 +119,7 @@ function PizzaChef() {
     };
 
     try {
-      await axios.put(`http://localhost:8080/api/pizzas/${pizzaId}`, payload);
+      await axios.put(`/api/pizzas/${pizzaId}`, payload);
       setEditingPizzaId(null); // Reset editing state
       fetchData(); // Fetch updated list of pizzas
     } catch (error) {
